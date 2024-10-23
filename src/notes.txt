@@ -3,3 +3,5 @@ redux1 branch:to practice  the playlist from codeevolution this branch has been 
 
 
 subscribe method:this method is responsible to register listener . and listener method is called everytime when the state is changed .m
+
+reduxToolKit: this is a branch for the playlist Redux Toolkit playlist from codeevolution
