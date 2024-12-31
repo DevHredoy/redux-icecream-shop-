@@ -37,27 +37,32 @@ const reducer = (state = initialState, action) => {
   }
 
   // redux store is somthing which brings actions and reducers together
-}
+};
 
 // below is the first responsibility
-const store=createStore(reducer)
+const store = createStore(reducer);
 
 //below is second responsibility, exposing the getState method to show the state
-console.log('initial state:',store.getState())
-
-
+console.log("initial state:", store.getState());
 
 // 4th responsibility
 
-const unsubscribe=store.subscribe(()=>console.log("updated state:",store.getState()))
-
-
+const unsubscribe = store.subscribe(() =>
+  console.log("updated state:", store.getState())
+);
 
 // 3rd responsibility
-store.dispatch(orderCake())
-store.dispatch(orderCake())
-store.dispatch(orderCake())
+store.dispatch(orderCake());
+store.dispatch(orderCake());
+store.dispatch(orderCake());
+store.dispatch(orderCake());
+store.dispatch(orderCake());
+store.dispatch(orderCake());
 
 //5th responsibity
 
-console.log("unsubscribe:",unsubscribe())
+unsubscribe();
+
+store.dispatch(orderCake());
+
+
