@@ -21,9 +21,13 @@ const initialState = {
   anotherProperty: 0,
 };
 
-//below is the reducer a function which acts like a shopkeeper in the cake shop
-//this function take the initial state and take the action, based on the action it performs the necessary initiative.
 
+
+// below is the reducer a function which acts like a shopkeeper in the cake shop
+// this function take the initial state and take the action, based on the action it performs the necessary initiative.
+
+
+// you are teaching the reducer the what he can do in a given situation. like you are training the person(reducer). reducer smoothly reducing the amount here 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case CAKE_ORDERED:
