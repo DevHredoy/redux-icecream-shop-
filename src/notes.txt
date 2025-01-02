@@ -12,3 +12,11 @@ reduxToolKit: this is a branch for the playlist Redux Toolkit playlist from code
 ft/deducting_cake: just minusing cake from the shelf 
 
 restockingCake:in this branch we shall learn how can include cake in the shelf
+
+
+
+
+
+
+restockingCake_accordingtovideo: implementing restocking according to how it was done by the video.
+

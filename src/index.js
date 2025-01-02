@@ -12,12 +12,12 @@ const CAKE_STOCKED = "CAKE_STOCKED";
 //action is an object with a type property
 //an action creator is a function which returns an action
 function orderCake() {
-  return { type: CAKE_ORDERED, quantity: 1 };
+  return { type: CAKE_ORDERED, payload: 1 };
 }
 
 //RESTOCKING CAKE:
-function stockCake() {
-  return { type: CAKE_STOCKED, quantity: 1 };
+function stockCake(qty = 1) {
+  return { type: CAKE_STOCKED, payload: qty };
 }
 
 // below is the state , an object
@@ -31,8 +31,8 @@ const initialState = {
 // this function take the initial state and take the action, based on the action it performs the necessary initiative.
 
 // you are teaching the reducer the what he can do in a given situation. like you are training the person(reducer). reducer smoothly reducing the amount here
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
+const reducer = (state = initialState) => {
+  switch (actio.type) {
     case CAKE_ORDERED:
       return {
         //below we are copying hte whole state object so that we can only change the desired state frm the object as there might be multiple states
@@ -44,7 +44,7 @@ const reducer = (state = initialState, action) => {
       return {
         //below we are copying hte whole state object so that we can only change the desired state frm the object as there might be multiple states
         ...state,
-        numOfCakes: state.numOfCakes + 1,
+        numOfCakes: state.numOfCakes + actio.payload,
       };
     default:
       return state;
@@ -72,10 +72,10 @@ store.dispatch(orderCake());
 store.dispatch(orderCake());
 store.dispatch(orderCake());
 store.dispatch(orderCake());
-store.dispatch(stockCake());
+store.dispatch(stockCake(3));
 // now what is happening in the above:When I call store.dispatch(orderCake()),
 // the orderCake() function returns the type of
-// the action (CAKE_ORDERED). This action is then passed
+// the action (CAKE_ORDERED) moreover the whole action object. This action is then passed
 // to the reducer through the redux store, which updates the store by reducing the
 // amount of cakes (numOfCakes) based on the logic defined in the reducer.
 
