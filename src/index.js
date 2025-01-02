@@ -2,8 +2,10 @@
 // we are going to use this to create the redux store
 
 const redux = require("redux");
-
 const createStore = redux.createStore;
+
+// helper function
+const bindActionCreators = redux.bindActionCreators;
 
 const CAKE_ORDERED = "CAKE_ORDERED";
 const CAKE_STOCKED = "CAKE_STOCKED";
@@ -31,7 +33,7 @@ const initialState = {
 // this function take the initial state and take the action, based on the action it performs the necessary initiative.
 
 // you are teaching the reducer the what he can do in a given situation. like you are training the person(reducer). reducer smoothly reducing the amount here
-const reducer = (state = initialState) => {
+const reducer = (state = initialState, actio) => {
   switch (actio.type) {
     case CAKE_ORDERED:
       return {
@@ -65,21 +67,13 @@ const unsubscribe = store.subscribe(() =>
   console.log("updated state:", store.getState())
 );
 
-// 3rd responsibility
-store.dispatch(orderCake());
-store.dispatch(orderCake());
-store.dispatch(orderCake());
-store.dispatch(orderCake());
-store.dispatch(orderCake());
-store.dispatch(orderCake());
-store.dispatch(stockCake(3));
-// now what is happening in the above:When I call store.dispatch(orderCake()),
-// the orderCake() function returns the type of
-// the action (CAKE_ORDERED) moreover the whole action object. This action is then passed
-// to the reducer through the redux store, which updates the store by reducing the
-// amount of cakes (numOfCakes) based on the logic defined in the reducer.
+const actions = bindActionCreators({ orderCake, stockCake }, store.dispatch);
 
-//5th responsibity
+actions.orderCake();
+actions.orderCake();
+actions.orderCake();
+
+actions.stockCake(3);
 
 unsubscribe();
 
