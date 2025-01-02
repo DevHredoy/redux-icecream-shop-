@@ -16,3 +16,5 @@ restockingCake:in this branch we shall learn how can include cake in the shelf
 restockingCake_accordingtovideo: implementing restocking according to how it was done by the video.
 
 alternative_dispatch: alternatively how can we achieve the goal of dispatch function.
+
+icecreamAdded:new branch will ice cream feature.

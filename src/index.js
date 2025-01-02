@@ -9,6 +9,8 @@ const bindActionCreators = redux.bindActionCreators;
 
 const CAKE_ORDERED = "CAKE_ORDERED";
 const CAKE_STOCKED = "CAKE_STOCKED";
+const ICECREAM_ORDERED = "ICECREAM_ORDERED";
+const ICECREAM_STOCKED = "ICECREAM_STOCKED";
 
 // action creator which is returning an action
 //action is an object with a type property
@@ -22,11 +24,21 @@ function stockCake(qty = 1) {
   return { type: CAKE_STOCKED, payload: qty };
 }
 
+//         ## icecream section
+
+function orderIceCream(qty = 1) {
+  return { type: ICECREAM_ORDERED, payload: qty };
+}
+
+function stockIceCream(qty = 1) {
+  return { type: ICECREAM_STOCKED, payload: qty };
+}
+
 // below is the state , an object
 
 const initialState = {
   numOfCakes: 10,
-  anotherProperty: 0,
+  numOfIceCreams: 10,
 };
 
 // below is the reducer a function which acts like a shopkeeper in the cake shop
@@ -48,6 +60,20 @@ const reducer = (state = initialState, actio) => {
         ...state,
         numOfCakes: state.numOfCakes + actio.payload,
       };
+
+    case ICECREAM_ORDERED:
+      return {
+        //below we are copying hte whole state object so that we can only change the desired state frm the object as there might be multiple states
+        ...state,
+        numOfIceCreams: state.numOfIceCreams - actio.payload,
+      };
+
+    case ICECREAM_STOCKED:
+      return {
+        ...state,
+        numOfIceCreams: state.numOfIceCreams + actio.payload,
+      };
+
     default:
       return state;
   }
@@ -67,7 +93,10 @@ const unsubscribe = store.subscribe(() =>
   console.log("updated state:", store.getState())
 );
 
-const actions = bindActionCreators({ orderCake, stockCake }, store.dispatch);
+const actions = bindActionCreators(
+  { orderCake, stockCake, orderIceCream, stockIceCream },
+  store.dispatch
+);
 
 actions.orderCake();
 actions.orderCake();
@@ -75,6 +104,8 @@ actions.orderCake();
 
 actions.stockCake(3);
 
-unsubscribe();
+actions.orderIceCream(1);
+actions.orderIceCream(1);
 
-store.dispatch(orderCake());
+actions.stockIceCream(1);
+unsubscribe();
