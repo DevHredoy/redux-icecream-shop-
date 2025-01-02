@@ -62,6 +62,13 @@ store.dispatch(orderCake());
 store.dispatch(orderCake());
 store.dispatch(orderCake());
 store.dispatch(orderCake());
+// now what is happening in the above:When I call store.dispatch(orderCake()), 
+// the orderCake() function returns the type of 
+// the action (CAKE_ORDERED). This action is then passed 
+// to the reducer through the redux store, which updates the store by reducing the 
+// amount of cakes (numOfCakes) based on the logic defined in the reducer.
+
+
 
 //5th responsibity
 
