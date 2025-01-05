@@ -19,7 +19,7 @@ function stockCake(qty = 1) {
 function orderIceCream(qty = 1) {
   return { type: ICECREAM_ORDERED, payload: qty };
 }
-
+//h
 function stockIceCream(qty = 1) {
   return { type: ICECREAM_STOCKED, payload: qty };
 }
