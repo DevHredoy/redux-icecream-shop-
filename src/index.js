@@ -3,6 +3,7 @@
 
 const redux = require("redux");
 const createStore = redux.createStore;
+const combineReducers=ReduxLogger.combineReducers
 
 // helper function
 const bindActionCreators = redux.bindActionCreators;
@@ -34,60 +35,66 @@ function stockIceCream(qty = 1) {
   return { type: ICECREAM_STOCKED, payload: qty };
 }
 
-// below is the state , an object
+// below are the states
 
-const initialState = {
-  numOfCakes: 10,
-  numOfIceCreams: 10,
-};
+const CakeState={
+  numOfCakes:10,
+}
+
+ 
+const IceCreamState={
+  numOfIceCreams:33,
+}
 
 // below is the reducer a function which acts like a shopkeeper in the cake shop
 // this function take the initial state and take the action, based on the action it performs the necessary initiative.
 
 // you are teaching the reducer the what he can do in a given situation. like you are training the person(reducer). reducer smoothly reducing the amount here
-const reducer = (state = initialState, actio) => {
-  switch (actio.type) {
-    case CAKE_ORDERED:
-      return {
-        //below we are copying hte whole state object so that we can only change the desired state frm the object as there might be multiple states
-        ...state,
-        numOfCakes: state.numOfCakes - 1,
-      };
+ const cakeReducer=(CakeState,actio)=>{
 
-    case CAKE_STOCKED:
-      return {
-        //below we are copying hte whole state object so that we can only change the desired state frm the object as there might be multiple states
-        ...state,
-        numOfCakes: state.numOfCakes + actio.payload,
-      };
+  switch(actio.type){
 
-    case ICECREAM_ORDERED:
-      return {
-        //below we are copying hte whole state object so that we can only change the desired state frm the object as there might be multiple states
-        ...state,
-        numOfIceCreams: state.numOfIceCreams - actio.payload,
-      };
+case CAKE_ORDERED:
+  return {
+    
+        numOfCakes: CakeState.numOfCakes + actio.payload,
 
-    case ICECREAM_STOCKED:
-      return {
-        ...state,
-        numOfIceCreams: state.numOfIceCreams + actio.payload,
-      };
+  };
 
-    default:
-      return state;
-  }
+  case CAKE_STOCKED:
+    return{
+      numOfIceCreams:IceCreamState.numOfIceCreams+actio.payload,
 
-  // redux store is somthing which brings actions and reducers together
-};
+    }}
+ }
 
-// below is the first responsibility
+ const iceCreamReducer=(IceCreamState,actio)=>{
+
+  switch(actio.type){
+
+case ICECREAM_ORDERED:
+  return {
+    
+    numOfIceCreams: IceCreamState.numOfIceCreams - actio.payload,
+  };
+
+  case ICECREAM_STOCKED:
+    return{
+      
+        
+          
+          numOfIceCreams: IceCreamState.numOfIceCreams + actio.payload,
+      
+
+    }}
+ }
+
+  
 const store = createStore(reducer);
 
-//below is second responsibility, exposing the getState method to show the state
 console.log("initial state:", store.getState());
 
-// 4th responsibility
+
 
 const unsubscribe = store.subscribe(() =>
   console.log("updated state:", store.getState())
@@ -107,5 +114,5 @@ actions.stockCake(3);
 actions.orderIceCream(1);
 actions.orderIceCream(1);
 
-actions.stockIceCream(1);
+actions.stockIceCream(5);
 unsubscribe();
