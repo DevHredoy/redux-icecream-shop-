@@ -1,5 +1,7 @@
 const redux=require('redux')
 const createStore=redux.createStore
+const thunkMiddleware=require('redux-thunk').default
+const applyMiddleware=redux.applyMiddleware
 
 const initialState = {
   loading: false,
@@ -57,4 +59,4 @@ case FETCH_USERS_FAILED:
 
 }
 
-const store=createStore(reducer)
+const store=createStore(reducer,applyMiddleware())
