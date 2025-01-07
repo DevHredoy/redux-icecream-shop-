@@ -1,15 +1,15 @@
-import { createLogger } from "redux-logger";
-
-
 const redux = require("redux");
 const createStore = redux.createStore;
 const bindActionCreators = redux.bindActionCreators;
 const combineReducers = redux.combineReducers;
 
-//logger section
-const reduxLogger=require('redux-logger')
-const logger=reduxLogger.createLogger();
+//middlewire section
 
+const applyMiddleware = redux.applyMiddleware;
+
+//logger section
+const reduxLogger = require("redux-logger");
+const logger = reduxLogger.createLogger();
 
 const CAKE_ORDERED = "CAKE_ORDERED";
 const CAKE_STOCKED = "CAKE_STOCKED";
@@ -49,9 +49,15 @@ const cakeReducer = (state = CakeState, action) => {
 const iceCreamReducer = (state = IceCreamState, action) => {
   switch (action.type) {
     case ICECREAM_ORDERED:
-      return { ...state, numOfIceCreams: state.numOfIceCreams - action.payload };
+      return {
+        ...state,
+        numOfIceCreams: state.numOfIceCreams - action.payload,
+      };
     case ICECREAM_STOCKED:
-      return { ...state, numOfIceCreams: state.numOfIceCreams + action.payload };
+      return {
+        ...state,
+        numOfIceCreams: state.numOfIceCreams + action.payload,
+      };
     default:
       return state;
   }
@@ -62,13 +68,9 @@ const rootReducer = combineReducers({
   iceCream: iceCreamReducer,
 });
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(logger));
 
-console.log("Initial state:", store.getState());
-
-const unsubscribe = store.subscribe(() =>
-  console.log("Updated state:", store.getState())
-);
+const unsubscribe = store.subscribe(() => {});
 
 const actions = bindActionCreators(
   { orderCake, stockCake, orderIceCream, stockIceCream },
@@ -76,7 +78,7 @@ const actions = bindActionCreators(
 );
 
 actions.orderCake();
-actions.orderCake(); 
+actions.orderCake();
 actions.orderCake();
 actions.stockCake(3);
 actions.orderIceCream(1);
