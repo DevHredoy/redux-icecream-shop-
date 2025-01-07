@@ -18,3 +18,7 @@ restockingCake_accordingtovideo: implementing restocking according to how it was
 alternative_dispatch: alternatively how can we achieve the goal of dispatch function.
 
 icecreamAdded:new branch will ice cream feature.
+
+redux_recommended_practice: using middle wire ,logger.
+
+asyncAction:checkedout from redux_recommended_practice to demo asyncAction.
