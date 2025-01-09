@@ -5,6 +5,24 @@ redux1 branch:to practice  the playlist from codeevolution this branch has been 
 subscribe method:this method is responsible to register listener . and subscribe method is called everytime when the state is changed .Subscribe accepts a function as it's argument.
 
 
+note 1:
+
+by using reducer action creator we could change the state.
+
+by using bindaction we created double reducer and could create different seperate states.
+
+by using thunk middleware based on api response we could call other action creator.
+
+what thunk middleware gave us that let us return a function which is not possible(possible is returning an object.), possible but not easily. it gives more readability, seperation of concerns.
+
+
+
+
+
+
+
+
+
 
                                       --branch description:
 reduxToolKit: this is a branch for the playlist Redux Toolkit playlist from codeevolution
