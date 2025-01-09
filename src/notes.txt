@@ -22,3 +22,7 @@ icecreamAdded:new branch will ice cream feature.
 redux_recommended_practice: using middle wire ,logger.
 
 asyncAction:checkedout from redux_recommended_practice to demo asyncAction.
+
+
+rtk_mainConvention: as far what we learned is how everything happens under the hood. but to remove boilerplate coding and to focus more writing coding logic
+there are other conventions which cuts the developer's effort.
